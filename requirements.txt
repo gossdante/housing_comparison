@@ -1,0 +1,11 @@
+pandas
+matplotlib
+numpy
+streamlit
+seaborn
+folium
+geopandas
+plotly
+streamlit_folium
+shapely
+geopy
