@@ -18,7 +18,7 @@ def load_housing_data():
 
 @st.cache_data
 def load_geojson_data():
-    census_tracts = gpd.read_file('tl_2020_us_zcta520.shp', crs='EPSG:4326')
+    census_tracts = gpd.read_file('zcta520_simplified.shp', crs='EPSG:4326')
     census_tracts.rename(columns={'ZCTA5CE20': 'ZIP Code'}, inplace=True)
     census_tracts = census_tracts[['ZIP Code', 'geometry']]
     census_tracts['ZIP Code'] = census_tracts['ZIP Code'].astype(int)
