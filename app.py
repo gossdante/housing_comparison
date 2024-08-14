@@ -84,7 +84,7 @@ st.write('---')
 # Add Folium Map
 st.subheader('Map of Fair Market Rent')
 chosen_location = st.selectbox('Select a Location', map_df['Location'].unique(), index=None)
-chosen_radius = st.slider('Select a Radius (miles)', 5, 250, 50)
+chosen_radius = st.slider('Select a Radius (miles)', 5, 250, 10)
 
 
 st.write('---')
@@ -95,10 +95,11 @@ if chosen_location:
     chosen_lon = location_data['Longitude'].iloc[0]
     radius_miles = chosen_radius
     filtered_df = limit_data_by_radius(map_df, chosen_lat, chosen_lon, radius_miles)
-    
+    st.subheader('Data for Selected Location')
+    st.write(filtered_df[['ZIP Code', 'City', 'State', 'Studio', '1BR', '2BR', '3BR', '4BR']])
     map = create_folium_map(filtered_df, location_data)
     st_folium(map, width=1200, height=900)
-
+    
     st.write('---')
 
 with st.sidebar:
