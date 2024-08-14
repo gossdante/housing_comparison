@@ -153,18 +153,18 @@ def compare_data_page():
         st.subheader('City 1')
         city1 = st.selectbox('Select a City', df['Location'].unique(), key='city1')
         city1_data = df.groupby('Location').get_group(city1)[['Studio', '1BR', '2BR', '3BR', '4BR']].agg(['mean', 'std'])
-        st.write(city1_data.T)
+        st.write(round(city1_data.T),0)
     with col2:
         st.subheader('City 2')
         city2 = st.selectbox('Select a City', df['Location'].unique(),key='city2')
         city2_data = df.groupby('Location').get_group(city2)[['Studio', '1BR', '2BR', '3BR', '4BR']].agg(['mean', 'std']).apply(lambda x: round(x, 0))
-        st.write(city2_data.T)
+        st.write(round(city2_data.T),0)
     with col3:
         st.subheader('Comparison')
         st.write('##')
         if city1_data is not None and city2_data is not None:
             comparison = city1_data - city2_data
-            st.write(comparison.T)
+            st.write(round(comparison.T),0)
     st.write('---')
 # Create sidebar for navigation
 st.sidebar.title("Navigation")
